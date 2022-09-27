@@ -27,7 +27,7 @@ function comparer(choix1, choix2) {
 
 function log(choix1, choix2) {
   console.log(
-    `${choix1} vs ${choix2}` + ` => vainqueur : ${comparer(choix1, choix2)}`
+    `${choix1} vs ${choix2} => vainqueur : ${comparer(choix1, choix2)}`
   );
 }
 
