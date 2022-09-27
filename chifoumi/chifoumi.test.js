@@ -51,17 +51,17 @@ function testComparer(choixJoueur, choixCPU, attendu) {
 }
 
 testComparer(PIERRE, PIERRE, NUL);
-testComparer(PIERRE, PIERRE, JOUEUR);
-testComparer(PIERRE, CISEAUX, JOUEUR);
-testComparer(PIERRE, CISEAUX, ORDINATEUR);
-testComparer(PIERRE, FEUILLE, ORDINATEUR);
-testComparer(PIERRE, FEUILLE, JOUEUR);
+testComparer(PIERRE, PIERRE, PIERRE);
+testComparer(PIERRE, CISEAUX, PIERRE);
+testComparer(PIERRE, CISEAUX, CISEAUX);
+testComparer(PIERRE, FEUILLE, FEUILLE);
+testComparer(PIERRE, FEUILLE, PIERRE);
 testComparer(FEUILLE, FEUILLE, NUL);
-testComparer(FEUILLE, PIERRE, JOUEUR);
-testComparer(FEUILLE, CISEAUX, ORDINATEUR);
+testComparer(FEUILLE, PIERRE, FEUILLE);
+testComparer(FEUILLE, CISEAUX, CISEAUX);
 testComparer(CISEAUX, CISEAUX, NUL);
-testComparer(CISEAUX, FEUILLE, JOUEUR);
-testComparer(CISEAUX, PIERRE, ORDINATEUR);
+testComparer(CISEAUX, FEUILLE, CISEAUX);
+testComparer(CISEAUX, PIERRE, PIERRE);
 
 // fonction jouerManche()
 // a la mano (via console.log dans la fonction testée)
