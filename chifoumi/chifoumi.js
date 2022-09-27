@@ -33,9 +33,9 @@ function getChoixString(choix) {
 }
 
 function getVainqueurString(resultat) {
-  return resultat === 0
+  return resultat === NUL
     ? "égalité"
-    : resultat === 1
+    : resultat === JOUEUR
       ? "joueur"
       : "ordinateur";
 }
