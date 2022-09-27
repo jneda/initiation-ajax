@@ -1,22 +1,23 @@
 // constantes utilitaires
 
-const PIERRE = 0;
-const FEUILLE = 1;
-const CISEAUX = 2;
+const PIERRE = "pierre";
+const FEUILLE = "feuille";
+const CISEAUX = "ciseaux";
 
-const NUL = 0;
-const JOUEUR = 1;
-const ORDINATEUR = 2;
+const NUL = "aucun";
+const JOUEUR = "joueur";
+const ORDINATEUR = "ordinateur";
 
 // fonction de comparaison
 
 function comparer(choix1, choix2) {
   if (choix1 === choix2) {
     return NUL;
-  }
-  else if ((choix1 === PIERRE && choix2 === CISEAUX) ||
+  } else if (
+    (choix1 === PIERRE && choix2 === CISEAUX) ||
     (choix1 === FEUILLE && choix2 === PIERRE) ||
-    (choix1 === CISEAUX && choix2 === FEUILLE)) {
+    (choix1 === CISEAUX && choix2 === FEUILLE)
+  ) {
     return JOUEUR;
   }
   return ORDINATEUR;
@@ -24,26 +25,10 @@ function comparer(choix1, choix2) {
 
 // tests
 
-function getChoixString(choix) {
-  return choix === PIERRE
-    ? "pierre"
-    : choix === FEUILLE
-      ? "feuille"
-      : "ciseaux";
-}
-
-function getVainqueurString(resultat) {
-  return resultat === NUL
-    ? "égalité"
-    : resultat === JOUEUR
-      ? "joueur"
-      : "ordinateur";
-}
-
 function log(choix1, choix2) {
-  const vainqueur = comparer(choix1, choix2);
-  console.log(`${getChoixString(choix1)} vs ${getChoixString(choix2)}` +
-    ` => vainqueur : ${getVainqueurString(vainqueur)}`);
+  console.log(
+    `${choix1} vs ${choix2}` + ` => vainqueur : ${comparer(choix1, choix2)}`
+  );
 }
 
 log(PIERRE, PIERRE);
