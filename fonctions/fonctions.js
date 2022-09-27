@@ -1,3 +1,5 @@
+"use strict";
+
 /* Développer :
 
 une fonction diviserParDeux qui retourne la moitié de la valeur passée en
