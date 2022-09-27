@@ -68,5 +68,9 @@ function comparer(choixJoueur, choixCPU) {
 // fonction pour une manche
 
 function jouerManche() {
-
+  const choixCPU = choisirCPU();
+  const choixJoueur = choisirJoueur();
+  const vainqueur = comparer(choixJoueur, choixCPU);
+  console.log(`${choixJoueur} vs ${choixCPU} : ${vainqueur} gagnant`);
+  return vainqueur;
 }

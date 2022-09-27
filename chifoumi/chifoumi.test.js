@@ -1,5 +1,7 @@
 // tests
 
+let testManuel = false;
+
 // fonction choisirCPU()
 
 function testChoisirCPU(n) {
@@ -32,8 +34,9 @@ testChoisirCPU(1000 * 1000);
 
 // test choisirJoueur()
 // a la mano...
+testManuel = false;
 
-while (prompt("Tester ?") !== "non") {
+while (testManuel && prompt("Tester choisirJoueur() ?") !== "non") {
   console.log(choisirJoueur());
 }
 
@@ -59,3 +62,11 @@ testComparer(FEUILLE, CISEAUX, ORDINATEUR);
 testComparer(CISEAUX, CISEAUX, NUL);
 testComparer(CISEAUX, FEUILLE, JOUEUR);
 testComparer(CISEAUX, PIERRE, ORDINATEUR);
+
+// fonction jouerManche()
+// a la mano (via console.log dans la fonction testée)
+testManuel = false;
+
+while (testManuel && prompt("Tester jouerManche() ?") !== "non") {
+  jouerManche();
+}
