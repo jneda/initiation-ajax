@@ -74,3 +74,29 @@ function jouerManche() {
   console.log(`${choixJoueur} vs ${choixCPU} : ${vainqueur} gagnant`);
   return vainqueur;
 }
+
+// fonction pour la partie
+
+function jouerPartie() {
+  let scoreJoueur = 0, scoreCPU = 0;
+
+  for (let manche = 0; manche < 3; manche++) {
+    const vainqueur = jouerManche();
+    if (vainqueur === JOUEUR) {
+      scoreJoueur++;
+    } else if (vainqueur === ORDINATEUR) {
+      scoreCPU++;
+    }
+  }
+
+  let result = "Match nul ! 😶";
+  if (scoreJoueur > scoreCPU) {
+    result = "Tu as gagné ! 🥳";
+  } else if (scoreJoueur < scoreCPU) {
+    result = "Tu as perdu... 😭";
+  }
+
+  alert(result);
+}
+
+jouerPartie();
