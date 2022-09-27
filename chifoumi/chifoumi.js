@@ -11,7 +11,6 @@ const ORDINATEUR = "ordinateur";
 // fonction de choix CPU
 
 function choisirCPU() {
-
   const choix = [PIERRE, FEUILLE, CISEAUX];
   // on choisit au hasard un index entre 0 et 2
   const index = Math.floor(Math.random() * 3);
@@ -23,19 +22,14 @@ function choisirCPU() {
 
 function choisirJoueur() {
   // on définit les choix possibles
-  const possibilites = [
-    "p",
-    "pierre",
-    "f",
-    "feuille",
-    "c",
-    "ciseaux"
-  ];
+  const possibilites = ["p", "pierre", "f", "feuille", "c", "ciseaux"];
 
   // on boucle tant que l'utilisateur entre n'importe quoi
   let choix;
   do {
-    choix = prompt("Quel est ton choix ? ((p)ierre, (f)euille ou (c)iseaux)").toLowerCase();
+    choix = prompt(
+      "Quel est ton choix ? ((p)ierre, (f)euille ou (c)iseaux)"
+    ).toLowerCase();
   } while (!possibilites.includes(choix));
 
   // on s'assure de renvoyer une valeur utilisable
@@ -55,14 +49,28 @@ function choisirJoueur() {
 function comparer(choixJoueur, choixCPU) {
   if (choixJoueur === choixCPU) {
     return NUL;
-  } else if (
-    (choixJoueur === PIERRE && choixCPU === CISEAUX) ||
-    (choixJoueur === FEUILLE && choixCPU === PIERRE) ||
-    (choixJoueur === CISEAUX && choixCPU === FEUILLE)
-  ) {
-    return JOUEUR;
   }
-  return ORDINATEUR;
+
+  switch (choixJoueur) {
+    case PIERRE:
+      if (choixCPU === FEUILLE) {
+        return FEUILLE;
+      } else {
+        return PIERRE;
+      }
+    case FEUILLE:
+      if (choixCPU === CISEAUX) {
+        return CISEAUX;
+      } else {
+        return FEUILLE;
+      }
+    case CISEAUX:
+      if (choixCPU === PIERRE) {
+        return PIERRE;
+      } else {
+        return CISEAUX;
+      }
+  }
 }
 
 // fonction pour une manche
@@ -70,15 +78,29 @@ function comparer(choixJoueur, choixCPU) {
 function jouerManche() {
   const choixCPU = choisirCPU();
   const choixJoueur = choisirJoueur();
-  const vainqueur = comparer(choixJoueur, choixCPU);
-  console.log(`${choixJoueur} vs ${choixCPU} : ${vainqueur} gagnant`);
+  const choixGagnant = comparer(choixJoueur, choixCPU);
+  console.log(`${choixJoueur} vs ${choixCPU} : ${choixGagnant} gagnant`);
+
+  const message =
+    `Tu as choisi ${choixJoueur} et l'ordinateur ${choixCPU}, ` +
+    (choixGagnant !== NUL ? `${choixGagnant} l'emporte !` : `manche nulle.`);
+
+  alert(message);
+
+  const vainqueur =
+    choixGagnant === NUL
+      ? NUL
+      : choixGagnant === choixJoueur
+      ? JOUEUR
+      : ORDINATEUR;
   return vainqueur;
 }
 
 // fonction pour la partie
 
 function jouerPartie() {
-  let scoreJoueur = 0, scoreCPU = 0;
+  let scoreJoueur = 0,
+    scoreCPU = 0;
 
   for (let manche = 0; manche < 3; manche++) {
     const vainqueur = jouerManche();
@@ -95,7 +117,7 @@ function jouerPartie() {
   } else if (scoreJoueur < scoreCPU) {
     result = "Tu as perdu... 😭";
   }
-
+  result += ` (Ton score : ${scoreJoueur} Ordinateur : ${scoreCPU})`;
   alert(result);
 }
 
