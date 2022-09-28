@@ -11,3 +11,34 @@ body {
   background-color: #eef;
   color: #221;
 }
+
+h1,
+h2 {
+  text-align: center;
+}
+
+section {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4rem;
+}
+
+ul li {
+  display: block;
+  padding: 0.4rem;
+}
+
+/* Styles écran large */
+
+@media screen and (min-width: 875px) {
+  body {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+}
