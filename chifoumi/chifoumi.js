@@ -47,7 +47,7 @@ function choisirJoueur() {
 // fonction de comparaison
 
 function comparer(choixJoueur, choixCPU) {
-  // si manche null, on renvoie et on sort
+  // si manche nulle, on renvoie et on sort
   if (choixJoueur === choixCPU) {
     return NUL;
   }
