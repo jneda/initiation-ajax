@@ -47,10 +47,13 @@ function choisirJoueur() {
 // fonction de comparaison
 
 function comparer(choixJoueur, choixCPU) {
+  // si manche null, on renvoie et on sort
   if (choixJoueur === choixCPU) {
     return NUL;
   }
 
+  // 3 choix du joueur et 2 restants pour l'ordinateur :
+  // 6 possibilités
   switch (choixJoueur) {
     case PIERRE:
       if (choixCPU === FEUILLE) {
@@ -94,24 +97,23 @@ function getVainqueur(choixJoueur, choixGagnant) {
 // logique d'une manche
 
 function jouerManche() {
+
   const choixCPU = choisirCPU();
   const choixJoueur = choisirJoueur();
   const choixGagnant = comparer(choixJoueur, choixCPU);
-  // console.log(`${choixJoueur} vs ${choixCPU} : ${choixGagnant} gagnant`);
 
+  // on retourne les choix dans un Array pour calculer le résultat
+  // puis l'afficher à partir de la fonction principale
   return [choixJoueur, choixCPU, choixGagnant];
 }
 
 // fonctions pour la partie
 
-// procédures d'affichage du résultat
+// procédures d'affichage des résultats
 
 function afficherResultatManche(
   choixJoueur, choixCPU, choixGagnant, scoreJoueur, scoreCPU
 ) {
-  console.log(`choixJoueur : ${choixJoueur}, choixCPU : ${choixCPU},` +
-    ` choixGagnant : ${choixGagnant}, scoreJoueur : ${scoreJoueur},` +
-    ` scoreCPU : ${scoreCPU}`);
   const message =
     `Tu as choisi ${choixJoueur} et l'ordinateur ${choixCPU}, ` +
     (choixGagnant !== NUL ? `${choixGagnant} l'emporte !` : `manche nulle.`) +
@@ -136,27 +138,30 @@ function afficherResultatPartie(scoreJoueur, scoreCPU) {
 // logique pour une partie
 
 function jouerPartie() {
+  // initialisation des scores
   let scoreJoueur = 0,
     scoreCPU = 0;
 
+  // boucle du jeu
   for (let manche = 0; manche < 3; manche++) {
+    // résolution d'une manche
     const [choixJoueur, choixCPU, choixGagnant] = jouerManche();
     const vainqueur = getVainqueur(choixJoueur, choixGagnant);
 
+    // mise à jour des scores
     if (vainqueur === JOUEUR) {
       scoreJoueur++;
     } else if (vainqueur === ORDINATEUR) {
       scoreCPU++;
     }
 
-    console.log(`vainqueur : ${vainqueur}, scoreJoueur : ${scoreJoueur}, ` +
-      `scoreCPU : ${scoreCPU}`);
-
+    // affichage
     afficherResultatManche(
       choixJoueur, choixCPU, choixGagnant, scoreJoueur, scoreCPU
     );
   }
 
+  // fin de partie
   afficherResultatPartie(scoreJoueur, scoreCPU);
 }
 
