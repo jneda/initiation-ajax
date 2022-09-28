@@ -20,11 +20,19 @@ xhr.onreadystatechange = function () {
   // ici on regarde si la requête est terminée
   // cf. https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/readyState
   if (xhr.readyState === XMLHttpRequest.DONE) {
+
+    const reponse = xhr.responseText;
+    const typeReponse = typeof reponse;
+
     // on traite les données reçues du serveur grâce à la méthode JSON.parse()
     // afin de les convertir en object JS
-    const reponse = JSON.parse(xhr.responseText);
-    alert(`La réponse traitée est de type ${typeof reponse}\n` +
-      `La valeur de la propriété response.name est ${reponse.name}`);
+    const JSObject = JSON.parse(reponse);
+    const typeJSObject = typeof JSObject;
+
+    alert(`La réponse reçue est de type ${typeReponse}\n`+
+      `La réponse traitée est de type ${typeJSObject}\n` +
+      `Les propriétés de l'objet JS sont ${Object.keys(JSObject)}\n` +
+      `La valeur de la propriété response.name est ${JSObject.name}`);
   }
 }
 
