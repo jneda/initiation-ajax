@@ -73,52 +73,93 @@ function comparer(choixJoueur, choixCPU) {
   }
 }
 
-// fonction pour une manche
+// fonctions pour une manche
+
+// fonction de détermination du vainqueur
+
+function getVainqueur(choixJoueur, choixGagnant) {
+  let vainqueur;
+  
+  if (choixGagnant === NUL) {
+    vainqueur = NUL;
+  } else if (choixJoueur === choixGagnant) {
+    vainqueur = JOUEUR;
+  } else {
+    vainqueur = ORDINATEUR;
+  }
+
+  return vainqueur;
+}
+
+// logique d'une manche
 
 function jouerManche() {
   const choixCPU = choisirCPU();
   const choixJoueur = choisirJoueur();
   const choixGagnant = comparer(choixJoueur, choixCPU);
-  console.log(`${choixJoueur} vs ${choixCPU} : ${choixGagnant} gagnant`);
+  // console.log(`${choixJoueur} vs ${choixCPU} : ${choixGagnant} gagnant`);
 
-  const message =
-    `Tu as choisi ${choixJoueur} et l'ordinateur ${choixCPU}, ` +
-    (choixGagnant !== NUL ? `${choixGagnant} l'emporte !` : `manche nulle.`);
-
-  alert(message);
-
-  const vainqueur =
-    choixGagnant === NUL
-      ? NUL
-      : choixGagnant === choixJoueur
-      ? JOUEUR
-      : ORDINATEUR;
-  return vainqueur;
+  return [choixJoueur, choixCPU, choixGagnant];
 }
 
-// fonction pour la partie
+// fonctions pour la partie
+
+// procédures d'affichage du résultat
+
+function afficherResultatManche(
+  choixJoueur, choixCPU, choixGagnant, scoreJoueur, scoreCPU
+) {
+  console.log(`choixJoueur : ${choixJoueur}, choixCPU : ${choixCPU},` +
+    ` choixGagnant : ${choixGagnant}, scoreJoueur : ${scoreJoueur},` +
+    ` scoreCPU : ${scoreCPU}`);
+  const message =
+    `Tu as choisi ${choixJoueur} et l'ordinateur ${choixCPU}, ` +
+    (choixGagnant !== NUL ? `${choixGagnant} l'emporte !` : `manche nulle.`) +
+    ` (Ton score : ${scoreJoueur} Ordinateur : ${scoreCPU})`;
+  alert(message);
+}
+
+function afficherResultatPartie(scoreJoueur, scoreCPU) {
+  let result = "Match nul ! 😶";
+
+  if (scoreJoueur > scoreCPU) {
+    result = "Tu as gagné ! 🥳";
+  } else if (scoreJoueur < scoreCPU) {
+    result = "Tu as perdu... 😭";
+  }
+
+  result += ` (Ton score : ${scoreJoueur} Ordinateur : ${scoreCPU})`;
+
+  alert(result);
+}
+
+// logique pour une partie
 
 function jouerPartie() {
   let scoreJoueur = 0,
     scoreCPU = 0;
 
   for (let manche = 0; manche < 3; manche++) {
-    const vainqueur = jouerManche();
+    const [choixJoueur, choixCPU, choixGagnant] = jouerManche();
+    const vainqueur = getVainqueur(choixJoueur, choixGagnant);
+
     if (vainqueur === JOUEUR) {
       scoreJoueur++;
     } else if (vainqueur === ORDINATEUR) {
       scoreCPU++;
     }
+
+    console.log(`vainqueur : ${vainqueur}, scoreJoueur : ${scoreJoueur}, ` +
+      `scoreCPU : ${scoreCPU}`);
+
+    afficherResultatManche(
+      choixJoueur, choixCPU, choixGagnant, scoreJoueur, scoreCPU
+    );
   }
 
-  let result = "Match nul ! 😶";
-  if (scoreJoueur > scoreCPU) {
-    result = "Tu as gagné ! 🥳";
-  } else if (scoreJoueur < scoreCPU) {
-    result = "Tu as perdu... 😭";
-  }
-  result += ` (Ton score : ${scoreJoueur} Ordinateur : ${scoreCPU})`;
-  alert(result);
+  afficherResultatPartie(scoreJoueur, scoreCPU);
 }
+
+// appel de la fonction principale
 
 jouerPartie();
