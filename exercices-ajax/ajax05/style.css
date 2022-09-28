@@ -1,0 +1,40 @@
+/* Styles header */
+
+header {
+  text-align: center;
+}
+
+.mention {
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  position: relative;
+  bottom: 1rem;
+}
+
+/* Styles recherche et résultats */
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+ul {
+  margin-top: 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+ul img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Styles écran large */
+
+@media screen and (min-width: 875px) {
+  body {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+}
