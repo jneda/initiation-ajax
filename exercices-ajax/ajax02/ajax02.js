@@ -31,8 +31,9 @@ xhr.onreadystatechange = function () {
 
     alert(`La réponse reçue est de type ${typeReponse}\n`+
       `La réponse traitée est de type ${typeJSObject}\n` +
-      `Les propriétés de l'objet JS sont ${Object.keys(JSObject)}\n` +
-      `La valeur de la propriété response.name est ${JSObject.name}`);
+      `Les propriétés de l'objet JS sont` +
+      `\n[\n${Object.keys(JSObject).join("\n")}\n]\n` +
+      `La valeur de la propriété name est ${JSObject.name}`);
   }
 }
 

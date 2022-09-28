@@ -1,6 +1,5 @@
 /* Exemple API avec XMLHttpRequest
-/!\ BAD PRACTICE !!! /!\
-GIPHY API key: 8RLMe1haihYSVrXQpM2VHJ6L3uoUPsms*/
+TODO: modulariser en fonctions */
 
 // références au DOM
 const searchInputElement = document.getElementById("tags");
@@ -29,7 +28,7 @@ buttonElement.addEventListener("click", () => {
   // parmaétrage de la requête
   const methode = "GET";
   const baseURL = "https://api.giphy.com/v1/gifs/search"; // API
-  const apiKey = "8RLMe1haihYSVrXQpM2VHJ6L3uoUPsms"; // ahem...
+  const apiKey = "8RLMe1haihYSVrXQpM2VHJ6L3uoUPsms"; // 😱
   const lang = "fr";
   
   const url = baseURL + "?api_key=" + apiKey + "&lang=" + lang +
@@ -45,21 +44,28 @@ buttonElement.addEventListener("click", () => {
     // cf.
     //https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/readyState
 
+    // tout le traitement se fait ici, après que la requête est terminée
+    // (i.e. après que la réponse a été entièrement reçue)
+
     if (xhr.readyState === XMLHttpRequest.DONE) {
-      // console.log("réponse du serveur : ", xhr.responseText);
       const reponse = JSON.parse(xhr.responseText);
       // les GIF c'est lourd, on se limite à 3
       const gifsList = reponse.data.slice(0, 3);
 
+      // parcours de la liste d'objets JS
       for (const gifData of gifsList) {
         const gifUrl = gifData.images.downsized.url;
         gifUrls.push(gifUrl);
+        // manipulation du DOM
         // test <img>
         const imgElement = document.createElement('img');
         imgElement.src = gifUrl;
         imgElement.alt = tags;
+        // création d'un élément <li>
+        const liElement = document.createElement('li');
+        liElement.appendChild(imgElement);
         // mise à jour de l'élément <ul> dans le DOM
-        resultsListElement.appendChild(imgElement);
+        resultsListElement.appendChild(liElement);
       }
 
       console.log(gifUrls);
