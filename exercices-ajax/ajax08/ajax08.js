@@ -6,7 +6,6 @@ https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
 
 // const url = "https://cat-fact.herokuapp.com/facts";
 // const url = "https://techy-api.vercel.app/api/json";
-// const url = "https://techy-api.vercel.app/api/json";
 // const url = "https://entreprise.data.gouv.fr/api/rna/v1/full_text/";
 
 // références au DOM
