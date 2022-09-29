@@ -1,4 +1,5 @@
 /* Exemple API avec XMLHttpRequest
+Découpage en fonctions
 source : https://developer.mozilla.org/fr/docs/Web/Guide/AJAX/Getting_Started
  */
 
@@ -24,8 +25,8 @@ function makeRequest() {
     return;
   }
 
-  // on attache une fonction de callback à l'EventListener onreadystatechange
-  // exposé par httpRequest
+  // on attache une fonction de callback (qu'on définit plus loin)
+  // à l'EventListener onreadystatechange exposé par httpRequest
   httpRequest.onreadystatechange = alertContents;
 
   // on définit méthode et url de la requête
