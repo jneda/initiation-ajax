@@ -26,8 +26,12 @@ function updateProgress (progressEvent) {
 }
 
 function transferComplete (progressEvent) {
-  alert("Le transfert est terminé !");
-  console.log(httpRequest.responseText);
+  if (httpRequest.status === 200) {
+    alert("Le transfert est terminé !");    
+    console.log(httpRequest.responseText);
+  } else {
+    alert(`Erreur ${httpRequest.status}`);
+  }
 }
 
 function transferFailed (progressEvent) {
