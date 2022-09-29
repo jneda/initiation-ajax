@@ -6,7 +6,7 @@ const searchInputElement = document.getElementById("tags");
 const buttonElement = document.getElementById("button");
 const resultsListElement = document.getElementById("resultats");
 
-// LA liste
+// LA liste (pour console.log)
 let gifUrls = [];
 
 // ------------------- DOM -----------------------------------------------------
@@ -18,7 +18,7 @@ buttonElement.addEventListener("click", () => {
   // et le DOM
   resultsListElement.innerHTML = "";
 
-  // on récupère les termes de la recherche
+  // on récupère les termes de la recherche depuis l'élément <input>
   const tags = searchInputElement.value;
 
   // ----------------------------- AJAX --------------------------------------
@@ -48,27 +48,47 @@ buttonElement.addEventListener("click", () => {
     // (i.e. après que la réponse a été entièrement reçue)
 
     if (xhr.readyState === XMLHttpRequest.DONE) {
+      // on récupère une chaîne de caractères qu'on convertit en Array
+      // grâce à la méthode JSON.parse() fournie par le navigateur
       const reponse = JSON.parse(xhr.responseText);
-      // les GIF c'est lourd, on se limite à 3
+
+      // les GIF c'est lourd, on se limite ici aux 3 premiers de la liste
       const gifsList = reponse.data.slice(0, 3);
 
-      // parcours de la liste d'objets JS
-      for (const gifData of gifsList) {
+      // parcours de l'Array' d'Objects JS
+      for (const gifData of gifsList) { // parcours d'Array grâce à for ... of
+        // on va chercher la propriété qui nous intéresse
+        // ici c'est la propriété url de l'objet downsized
+        // lui-même propriété de la collection (objet) images
+        // elle-même propriété de l'objet contenant les données du GIF
+        // (ouf...)
         const gifUrl = gifData.images.downsized.url;
-        gifUrls.push(gifUrl);
+
+        gifUrls.push(gifUrl); // pour console.log
+
         // manipulation du DOM
-        // test <img>
+
+        // on crée un élément HTML <img>
         const imgElement = document.createElement('img');
+        // on affecte à ses attributs les valeurs pertinentes
+        // URL de l'image pour l'afficher
         imgElement.src = gifUrl;
+        // les termes de la recherche en guise de texte par défaut
         imgElement.alt = tags;
-        // création d'un élément <li>
+
+        // création d'un élément <li> pour contenir l'élément <img>
         const liElement = document.createElement('li');
-        liElement.appendChild(imgElement);
-        // mise à jour de l'élément <ul> dans le DOM
+
+        // on lui ajoute en tant qu'enfant l'élément <img>
+        liElement.appendChild(imgElement); 
+
+        // en on l'ajoute en tant qu'enfant de l'élément <ul>
         resultsListElement.appendChild(liElement);
       }
 
-      console.log(gifUrls);
+      // on affiche les données reçues de l'API dans la console
+      // pour notre édification personnelle
+      console.log(gifUrls); 
     }
   }
 
