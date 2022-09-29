@@ -11,12 +11,10 @@ https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
 
 // références au DOM
 const buttonElement = document.getElementById("ajax-button");
-// const imgElement = document.querySelector("img");
-const objectElement = document.querySelector("object");
+const imgElement = document.querySelector("img");
 
 // url de la requête
-// const url = "toto.png";
-const url = "Les_songes_drolatiques_de_Pantagruel.pdf";
+const url = "toto.png";
 
 // fonction callback
 
@@ -25,7 +23,7 @@ async function fetchImage() {
   .then((response) => response.blob())
   .then((myBlob) => {
     const objectUrl = URL.createObjectURL(myBlob);
-    objectElement.data = objectUrl;
+    imgElement.src = objectUrl;
   });
 }
 
