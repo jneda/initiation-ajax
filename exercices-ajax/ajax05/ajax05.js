@@ -28,7 +28,7 @@ buttonElement.addEventListener("click", () => {
   // parmaétrage de la requête
   const methode = "GET";
   const baseURL = "https://api.giphy.com/v1/gifs/search"; // API
-  const apiKey = ""; // 😱
+  const apiKey = "8RLMe1haihYSVrXQpM2VHJ6L3uoUPsms"; // 😱
   const lang = "fr";
   
   const url = baseURL + "?api_key=" + apiKey + "&lang=" + lang +
