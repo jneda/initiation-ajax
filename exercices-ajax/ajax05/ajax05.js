@@ -48,19 +48,24 @@ buttonElement.addEventListener("click", () => {
     // (i.e. après que la réponse a été entièrement reçue)
 
     if (xhr.readyState === XMLHttpRequest.DONE) {
-      // on récupère une chaîne de caractères qu'on convertit en Array
+      // on récupère une chaîne de caractères qu'on convertit en Object
       // grâce à la méthode JSON.parse() fournie par le navigateur
       const reponse = JSON.parse(xhr.responseText);
 
+      // regardons dans la console la tête de ces données
+      console.log("reponse :");
+      console.dir(reponse);
+
       // les GIF c'est lourd, on se limite ici aux 3 premiers de la liste
+      // contenue dans la propriété data de l'Object
       const gifsList = reponse.data.slice(0, 3);
 
       // parcours de l'Array' d'Objects JS
       for (const gifData of gifsList) { // parcours d'Array grâce à for ... of
         // on va chercher la propriété qui nous intéresse
         // ici c'est la propriété url de l'objet downsized
-        // lui-même propriété de la collection (objet) images
-        // elle-même propriété de l'objet contenant les données du GIF
+        // lui-même propriété de l'objet images
+        // lui-même propriété de l'objet gifData contenant les données du GIF
         // (ouf...)
         const gifUrl = gifData.images.downsized.url;
 
@@ -88,7 +93,7 @@ buttonElement.addEventListener("click", () => {
 
       // on affiche les données reçues de l'API dans la console
       // pour notre édification personnelle
-      console.log(gifUrls); 
+      console.log(`liste des URLs utilisées pour le DOM : ${gifUrls}`); 
     }
   }
 
