@@ -1,6 +1,10 @@
 /* Exemple de surveillance de la progression de la requête avec XMLHttpRequest
 source :
 https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#surveiller_la_progression
+
+
+TODO: essayer de télécharger
+https://drive.google.com/file/d/1F6snBuEf0KA-JUAv4PF8djxJp16l2cOK/view?usp=sharing
  */
 
 // on attache un EventListener au bouton pour lancer la requête

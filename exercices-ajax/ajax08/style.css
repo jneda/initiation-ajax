@@ -1,0 +1,48 @@
+/* Styles recherche et résultats */
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+button {
+  margin: 2rem auto;
+  display: block;
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: #efe;
+  background-color: #202;
+  border: 0;
+  border-radius: 5px;
+}
+
+button:hover,
+button:active {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+object {
+  width: 100vw;
+  height: calc(100vw * 6 / 9);
+  margin: 0 auto;
+}
+
+/* Styles écran large */
+
+@media screen and (min-width: 875px) {
+  body {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
+  object {
+    max-width: 60rem;
+    height: calc(60rem * 6 / 9);
+  }
+}
