@@ -64,7 +64,15 @@ function makeRequest() {
   setHttpRequestProgressListeners();
 
   // on définit méthode et url de la requête
-  httpRequest.open("GET", "https://cat-fact.herokuapp.com/facts");
+
+  /* Urls à tester */
+
+  // const url = "https://cat-fact.herokuapp.com/facts";
+  // const url = "https://techy-api.vercel.app/api/json";
+  // const url = "https://techy-api.vercel.app/api/json";
+  const url = "https://entreprise.data.gouv.fr/api/rna/v1/full_text/logiciels libres";
+
+  httpRequest.open("GET", url);
 
   // enfin on envoie la requête
   httpRequest.send();
