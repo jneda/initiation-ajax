@@ -30,6 +30,7 @@ function updateDOM(message) {
 }
 
 async function fetchAPIData() {
+  // return "Have you tried turning it off and on again?";
   const response = await fetch("https://techy-api.vercel.app/api/json");
   if (response.ok) {
     const data = await response.json();
