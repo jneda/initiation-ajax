@@ -1,0 +1,28 @@
+main {
+  max-width: 80%;
+  margin: 0.6rem auto;
+
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.search-controls {
+  line-height: 1.5;
+}
+
+.results li {
+  margin-top: 1rem;
+  border: 1px solid;
+  border-radius: 4px;
+  background-color: #fef;
+}
+
+.results address {
+  font-size: 0.8rem;
+}
